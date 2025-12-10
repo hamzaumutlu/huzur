@@ -1,12 +1,12 @@
 "use client";
 
 import * as React from "react";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 import { tr } from "date-fns/locale";
+import { getMonth } from "date-fns";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 
 export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
@@ -16,47 +16,92 @@ function Calendar({
     showOutsideDays = true,
     ...props
 }: CalendarProps) {
+    const [currentMonth, setCurrentMonth] = React.useState<Date>(new Date());
+
+    const getSeasonDecoration = (date: Date) => {
+        const month = getMonth(date);
+
+        // Winter (Dec, Jan, Feb) - Snowflakes
+        if (month === 11 || month === 0 || month === 1) {
+            return (
+                <>
+                    <div className="absolute -top-2 -right-2 w-20 h-20 bg-blue-200/40 rounded-full blur-2xl" />
+                    <div className="absolute top-3 right-3 text-2xl opacity-30">❄️</div>
+                    <div className="absolute bottom-3 left-3 text-xl opacity-20">☃️</div>
+                </>
+            );
+        }
+        // Spring (Mar, Apr, May) - Flowers
+        if (month >= 2 && month <= 4) {
+            return (
+                <>
+                    <div className="absolute -top-2 -left-2 w-20 h-20 bg-pink-200/40 rounded-full blur-2xl" />
+                    <div className="absolute top-3 right-3 text-2xl opacity-30">🌸</div>
+                    <div className="absolute bottom-3 left-3 text-xl opacity-20">🌷</div>
+                </>
+            );
+        }
+        // Summer (Jun, Jul, Aug) - Sun
+        if (month >= 5 && month <= 7) {
+            return (
+                <>
+                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-200/50 rounded-full blur-2xl" />
+                    <div className="absolute top-2 right-2 text-3xl opacity-40">☀️</div>
+                    <div className="absolute bottom-3 left-3 text-xl opacity-20">🌻</div>
+                </>
+            );
+        }
+        // Autumn (Sep, Oct, Nov) - Leaves
+        if (month >= 8 && month <= 10) {
+            return (
+                <>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-orange-200/30 rounded-full blur-3xl" />
+                    <div className="absolute top-3 right-3 text-2xl opacity-30">🍂</div>
+                    <div className="absolute bottom-3 left-3 text-xl opacity-20">🍁</div>
+                </>
+            );
+        }
+        return null;
+    };
+
     return (
-        <DayPicker
-            locale={tr}
-            showOutsideDays={showOutsideDays}
-            className={cn("p-3", className)}
-            classNames={{
-                months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
-                month: "space-y-4",
-                caption: "flex justify-center pt-1 relative items-center",
-                caption_label: "text-sm font-medium font-serif text-lg",
-                nav: "space-x-1 flex items-center",
-                nav_button: cn(
-                    buttonVariants({ variant: "outline" }),
-                    "h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 border-none hover:bg-stone-100"
-                ),
-                nav_button_previous: "absolute left-1",
-                nav_button_next: "absolute right-1",
-                table: "w-full border-collapse space-y-1 text-center",
-                head_row: "hidden", // User requested to remove Monday/Tuesday indicators ("yandaki göstergeleri olmasın")
-                head_cell:
-                    "text-stone-500 rounded-md w-9 font-normal text-[0.8rem]",
-                row: "flex w-full mt-2 justify-center gap-1",
-                cell: "h-9 w-9 text-center text-sm p-0 relative [&:has([aria-selected].day-range-end)]:rounded-r-md [&:has([aria-selected].day-outside)]:bg-stone-100/50 [&:has([aria-selected])]:bg-stone-100 first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md focus-within:relative focus-within:z-20",
-                day: cn(
-                    buttonVariants({ variant: "ghost" }),
-                    "h-9 w-9 p-0 font-normal aria-selected:opacity-100 rounded-full hover:bg-primary hover:text-white transition-all font-sans text-stone-900"
-                ),
-                day_range_end: "day-range-end",
-                day_selected:
-                    "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
-                day_today: "bg-stone-100 text-stone-900 font-bold",
-                day_outside:
-                    "day-outside text-stone-300 opacity-50 aria-selected:bg-stone-100/50 aria-selected:text-stone-500 aria-selected:opacity-30",
-                day_disabled: "text-stone-300 opacity-50",
-                day_range_middle:
-                    "aria-selected:bg-stone-100 aria-selected:text-stone-900",
-                day_hidden: "invisible",
-                ...classNames,
-            }}
-            {...props}
-        />
+        <div className="relative bg-white rounded-xl shadow-lg overflow-hidden">
+            {/* Seasonal Background */}
+            <div className="absolute inset-0 pointer-events-none">
+                {getSeasonDecoration(currentMonth)}
+            </div>
+
+            <DayPicker
+                locale={tr}
+                showOutsideDays={showOutsideDays}
+                onMonthChange={setCurrentMonth}
+                className={cn("p-4 relative z-10", className)}
+                classNames={{
+                    months: "flex flex-col",
+                    month: "space-y-4",
+                    caption: "flex justify-center items-center relative h-10",
+                    caption_label: "text-lg font-serif font-bold text-primary",
+                    nav: "flex items-center gap-1",
+                    nav_button: "h-8 w-8 bg-stone-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all text-stone-600",
+                    nav_button_previous: "absolute left-1",
+                    nav_button_next: "absolute right-1",
+                    table: "w-full border-collapse",
+                    head_row: "hidden",
+                    head_cell: "hidden",
+                    row: "flex w-full justify-center gap-1 mt-1",
+                    cell: "h-9 w-9 text-center text-sm p-0 relative",
+                    day: "h-9 w-9 p-0 font-normal rounded-full hover:bg-primary/10 hover:text-primary transition-all text-stone-700 inline-flex items-center justify-center cursor-pointer",
+                    day_range_end: "day-range-end",
+                    day_selected: "bg-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white shadow-md",
+                    day_today: "bg-stone-100 text-primary font-bold ring-1 ring-primary/30",
+                    day_outside: "text-stone-300 opacity-50",
+                    day_disabled: "text-stone-300 opacity-50",
+                    day_hidden: "invisible",
+                    ...classNames,
+                }}
+                {...props}
+            />
+        </div>
     );
 }
 Calendar.displayName = "Calendar";

@@ -15,14 +15,14 @@ const services = [
     {
         title: "Söz Organizasyonu",
         description: "Ailelerin tanıştığı ilk adımda zarif bir atmosfer.",
-        image: "/images/engagement.png", // Reuse engagement image or a different crop if available
+        image: "/images/soz.png",
         colSpan: "md:col-span-1",
         href: "/hizmetler/soz",
     },
     {
         title: "Nişan Töreni",
         description: "Evliliğe giden yolda görkemli bir kutlama.",
-        image: "/images/engagement.png",
+        image: "/images/nisan.png",
         colSpan: "md:col-span-1",
         href: "/hizmetler/nisan",
     },
@@ -50,7 +50,7 @@ const services = [
     {
         title: "Bekarlığa Veda",
         description: "Arkadaşlarınızla doyasıya eğleneceğiniz özel partiler.",
-        image: "/images/matinee.png",
+        image: "/images/bekarliga-veda.png",
         colSpan: "md:col-span-1",
         href: "/hizmetler/bekarliga-veda",
     },
@@ -64,7 +64,7 @@ const services = [
     {
         title: "Okul Programları",
         description: "Okuma bayramı ve resmi kutlamalar için profesyonel destek.",
-        image: "/images/graduation.png",
+        image: "/images/okul.png",
         colSpan: "md:col-span-1",
         href: "/hizmetler/okul-programlari",
     },
@@ -81,7 +81,7 @@ export function Services() {
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6 auto-rows-[280px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[280px]">
                     {services.map((service, index) => (
                         <Link
                             key={index}

@@ -58,33 +58,33 @@ export function Contact() {
                     </p>
 
                     <div className="space-y-6 pt-4">
-                        <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/5 p-4 rounded-xl transition-colors">
-                            <div className="p-3 bg-stone-800 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/10 p-4 rounded-xl transition-colors">
+                            <div className="p-3 bg-gradient-to-br from-primary to-emerald-600 rounded-lg text-white shadow-lg shadow-primary/30 group-hover:scale-110 transition-transform">
                                 <Phone size={24} />
                             </div>
                             <div>
-                                <p className="text-sm text-stone-500">Telefon / WhatsApp</p>
-                                <p className="text-lg font-medium">+90 531 371 86 74</p>
+                                <p className="text-sm text-stone-300">Telefon / WhatsApp</p>
+                                <p className="text-lg font-medium text-white">+90 531 371 86 74</p>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/5 p-4 rounded-xl transition-colors">
-                            <div className="p-3 bg-stone-800 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/10 p-4 rounded-xl transition-colors">
+                            <div className="p-3 bg-gradient-to-br from-pink-500 to-purple-600 rounded-lg text-white shadow-lg shadow-pink-500/30 group-hover:scale-110 transition-transform">
                                 <Instagram size={24} />
                             </div>
                             <div>
-                                <p className="text-sm text-stone-500">Instagram</p>
-                                <p className="text-lg font-medium">@huzursokagiorganizasyon</p>
+                                <p className="text-sm text-stone-300">Instagram</p>
+                                <p className="text-lg font-medium text-white">@huzursokagiorganizasyon</p>
                             </div>
                         </div>
 
-                        <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/5 p-4 rounded-xl transition-colors">
-                            <div className="p-3 bg-stone-800 rounded-lg text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+                        <div className="flex items-center gap-4 group cursor-pointer hover:bg-white/10 p-4 rounded-xl transition-colors">
+                            <div className="p-3 bg-gradient-to-br from-blue-500 to-cyan-600 rounded-lg text-white shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
                                 <MapPin size={24} />
                             </div>
                             <div>
-                                <p className="text-sm text-stone-500">Adres</p>
-                                <p className="text-lg font-medium">Huzur Sokağı No:1, İstanbul</p>
+                                <p className="text-sm text-stone-300">Adres</p>
+                                <p className="text-lg font-medium text-white">Huzur Sokağı No:1, Erzurum</p>
                             </div>
                         </div>
                     </div>
@@ -110,62 +110,67 @@ export function Contact() {
                             <h3 className="text-2xl font-serif text-white mb-6">Teklif Formu</h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-stone-300">Adınız Soyadınız</label>
-                                    <input required name="name" className="w-full bg-stone-900/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors" placeholder="İsim Soyisim" />
+                                    <label className="text-sm font-medium text-stone-200">Adınız Soyadınız</label>
+                                    <input required name="name" className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="İsim Soyisim" />
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-sm font-medium text-stone-300">Telefon Numaranız</label>
-                                    <input required name="phone" type="tel" className="w-full bg-stone-900/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors" placeholder="05XX XXX XX XX" />
+                                    <label className="text-sm font-medium text-stone-200">Telefon Numaranız</label>
+                                    <input required name="phone" type="tel" className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all" placeholder="05XX XXX XX XX" />
                                 </div>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-stone-300">Organizasyon Türü</label>
-                                <select name="type" className="w-full bg-stone-900/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors appearance-none" defaultValue="">
-                                    <option value="" disabled>Seçiniz</option>
-                                    <option>Kız İsteme</option>
-                                    <option>Söz Organizasyonu</option>
-                                    <option>Nişan Töreni</option>
-                                    <option>Doğum Günü</option>
-                                    <option>Sünnet Düğünü</option>
-                                    <option>Mezuniyet</option>
-                                    <option>Okul Programı</option>
-                                    <option>Bayanlar Matinesi</option>
-                                    <option>Bekarlığa Veda</option>
-                                    <option>Diğer</option>
-                                </select>
+                                <label className="text-sm font-medium text-stone-200">Organizasyon Türü</label>
+                                <div className="relative">
+                                    <select name="type" className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none" defaultValue="">
+                                        <option value="" disabled>Seçiniz</option>
+                                        <option>Kız İsteme</option>
+                                        <option>Söz Organizasyonu</option>
+                                        <option>Nişan Töreni</option>
+                                        <option>Doğum Günü</option>
+                                        <option>Sünnet Düğünü</option>
+                                        <option>Mezuniyet</option>
+                                        <option>Okul Programı</option>
+                                        <option>Bayanlar Matinesi</option>
+                                        <option>Bekarlığa Veda</option>
+                                        <option>Diğer</option>
+                                    </select>
+                                    <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-stone-500">
+                                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M2.5 4.5L6 8L9.5 4.5" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" /></svg>
+                                    </div>
+                                </div>
                             </div>
 
                             <div className="space-y-2 flex flex-col">
-                                <label className="text-sm font-medium text-stone-300">Tarih</label>
+                                <label className="text-sm font-medium text-stone-200">Tarih</label>
                                 <Popover>
                                     <PopoverTrigger asChild>
                                         <Button
                                             variant={"outline"}
                                             className={cn(
-                                                "w-full justify-start text-left font-normal bg-stone-900/50 border-stone-700 text-white hover:bg-stone-800/80 hover:text-primary py-6 px-4",
-                                                !date && "text-muted-foreground"
+                                                "w-full justify-start text-left font-normal bg-stone-50 border-none text-stone-900 hover:bg-stone-100 py-6 px-4",
+                                                !date && "text-stone-500"
                                             )}
                                         >
                                             <CalendarIcon className="mr-2 h-4 w-4" />
                                             {date ? format(date, "d MMMM yyyy", { locale: tr }) : <span>Gün - Ay - Yıl Seçiniz</span>}
                                         </Button>
                                     </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0 bg-stone-900 border-stone-700 text-white" align="start">
+                                    <PopoverContent className="w-auto p-0 bg-stone-50 border-stone-200 text-stone-900" align="start">
                                         <Calendar
                                             mode="single"
                                             selected={date}
                                             onSelect={setDate}
                                             initialFocus
-                                            className="bg-white text-stone-900 rounded-md border-none pointer-events-auto"
+                                            className="bg-white text-stone-900 rounded-md border-none pointer-events-auto shadow-xl"
                                         />
                                     </PopoverContent>
                                 </Popover>
                             </div>
 
                             <div className="space-y-2">
-                                <label className="text-sm font-medium text-stone-300">Notlarınız</label>
-                                <textarea name="notes" rows={4} className="w-full bg-stone-900/50 border border-stone-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary transition-colors resize-none" placeholder="Aklınızdaki detaylar..."></textarea>
+                                <label className="text-sm font-medium text-stone-200">Notlarınız</label>
+                                <textarea name="notes" rows={4} className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" placeholder="Aklınızdaki detaylar..."></textarea>
                             </div>
 
                             <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-6 text-lg">
