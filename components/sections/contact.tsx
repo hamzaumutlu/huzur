@@ -68,7 +68,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <p className="text-sm text-stone-300">Instagram</p>
-                                <p className="text-lg font-medium text-white">@huzursokagi_org.evi</p>
+                                <p className="text-lg font-medium text-white">@huzursokagiorganizasyonevi</p>
                             </div>
                         </div>
 

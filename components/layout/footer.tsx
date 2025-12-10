@@ -55,7 +55,7 @@ export function Footer() {
                             </li>
                         </ul>
                         <div className="flex gap-4 pt-2">
-                            <Link href="https://instagram.com/huzursokagi_org.evi" target="_blank" className="bg-white/10 p-2 rounded-full hover:bg-white hover:text-primary transition-colors"><Instagram size={18} /></Link>
+                            <Link href="https://instagram.com/huzursokagiorganizasyonevi" target="_blank" className="bg-white/10 p-2 rounded-full hover:bg-white hover:text-primary transition-colors"><Instagram size={18} /></Link>
                         </div>
                     </div>
                 </div>
