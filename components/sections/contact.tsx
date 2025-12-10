@@ -32,7 +32,7 @@ export function Contact() {
         const message = `Merhaba Huzur Sokağı, web siteniz üzerinden teklif almak istiyorum.%0A%0A*İsim Soyisim:* ${name}%0A*Telefon:* ${phone}%0A*Organizasyon Türü:* ${type}%0A*Tarih:* ${dateStr}%0A*Notlar:* ${notes}`;
 
         // WhatsApp redirect
-        window.open(`https://wa.me/905313718674?text=${message}`, '_blank');
+        window.open(`https://wa.me/905556003110?text=${message}`, '_blank');
         setFormStatus("success");
     };
 
