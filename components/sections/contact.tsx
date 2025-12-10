@@ -4,12 +4,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar as CalendarIcon, MapPin, Phone, Mail, Instagram } from "lucide-react";
-import { Calendar } from "@/components/ui/calendar";
-import {
-    Popover,
-    PopoverContent,
-    PopoverTrigger,
-} from "@/components/ui/popover";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -141,31 +135,14 @@ export function Contact() {
                                 </div>
                             </div>
 
-                            <div className="space-y-2 flex flex-col">
+                            <div className="space-y-2">
                                 <label className="text-sm font-medium text-stone-200">Tarih</label>
-                                <Popover>
-                                    <PopoverTrigger asChild>
-                                        <Button
-                                            variant={"outline"}
-                                            className={cn(
-                                                "w-full justify-start text-left font-normal bg-stone-50 border-none text-stone-900 hover:bg-stone-100 py-6 px-4",
-                                                !date && "text-stone-500"
-                                            )}
-                                        >
-                                            <CalendarIcon className="mr-2 h-4 w-4" />
-                                            {date ? format(date, "d MMMM yyyy", { locale: tr }) : <span>Gün - Ay - Yıl Seçiniz</span>}
-                                        </Button>
-                                    </PopoverTrigger>
-                                    <PopoverContent className="w-auto p-0 bg-stone-50 border-stone-200 text-stone-900" align="start">
-                                        <Calendar
-                                            mode="single"
-                                            selected={date}
-                                            onSelect={setDate}
-                                            initialFocus
-                                            className="bg-white text-stone-900 rounded-md border-none pointer-events-auto shadow-xl"
-                                        />
-                                    </PopoverContent>
-                                </Popover>
+                                <input
+                                    name="date_input"
+                                    type="date"
+                                    className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none"
+                                    onChange={(e) => setDate(e.target.valueAsDate || undefined)}
+                                />
                             </div>
 
                             <div className="space-y-2">
