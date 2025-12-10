@@ -64,7 +64,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <p className="text-sm text-stone-300">Telefon / WhatsApp</p>
-                                <p className="text-lg font-medium text-white">+90 531 371 86 74</p>
+                                <p className="text-lg font-medium text-white">0555 600 31 10</p>
                             </div>
                         </div>
 
@@ -74,7 +74,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <p className="text-sm text-stone-300">Instagram</p>
-                                <p className="text-lg font-medium text-white">@huzursokagiorganizasyon</p>
+                                <p className="text-lg font-medium text-white">@huzursokagi_org.evi</p>
                             </div>
                         </div>
 
@@ -84,7 +84,7 @@ export function Contact() {
                             </div>
                             <div>
                                 <p className="text-sm text-stone-300">Adres</p>
-                                <p className="text-lg font-medium text-white">Huzur Sokağı No:1, Erzurum</p>
+                                <p className="text-lg font-medium text-white">Adnan Menderes Mah. 82. Sk. No:15/5, Palandöken</p>
                             </div>
                         </div>
                     </div>

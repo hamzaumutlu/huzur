@@ -18,84 +18,94 @@ function Calendar({
 }: CalendarProps) {
     const [currentMonth, setCurrentMonth] = React.useState<Date>(new Date());
 
-    const getSeasonDecoration = (date: Date) => {
+    const getSeasonalTheme = (date: Date) => {
         const month = getMonth(date);
 
-        // Winter (Dec, Jan, Feb) - Snowflakes
+        // Kış (Aralık, Ocak, Şubat)
         if (month === 11 || month === 0 || month === 1) {
-            return (
-                <>
-                    <div className="absolute -top-2 -right-2 w-20 h-20 bg-blue-200/40 rounded-full blur-2xl" />
-                    <div className="absolute top-3 right-3 text-2xl opacity-30">❄️</div>
-                    <div className="absolute bottom-3 left-3 text-xl opacity-20">☃️</div>
-                </>
-            );
+            return {
+                bg: "bg-gradient-to-br from-blue-50/50 to-cyan-50/30",
+                accent: "from-blue-400 to-cyan-500",
+                emoji: "❄️"
+            };
         }
-        // Spring (Mar, Apr, May) - Flowers
+        // İlkbahar (Mart, Nisan, Mayıs)
         if (month >= 2 && month <= 4) {
-            return (
-                <>
-                    <div className="absolute -top-2 -left-2 w-20 h-20 bg-pink-200/40 rounded-full blur-2xl" />
-                    <div className="absolute top-3 right-3 text-2xl opacity-30">🌸</div>
-                    <div className="absolute bottom-3 left-3 text-xl opacity-20">🌷</div>
-                </>
-            );
+            return {
+                bg: "bg-gradient-to-br from-pink-50/50 to-rose-50/30",
+                accent: "from-pink-400 to-rose-500",
+                emoji: "🌸"
+            };
         }
-        // Summer (Jun, Jul, Aug) - Sun
+        // Yaz (Haziran, Temmuz, Ağustos)
         if (month >= 5 && month <= 7) {
-            return (
-                <>
-                    <div className="absolute -top-4 -right-4 w-24 h-24 bg-yellow-200/50 rounded-full blur-2xl" />
-                    <div className="absolute top-2 right-2 text-3xl opacity-40">☀️</div>
-                    <div className="absolute bottom-3 left-3 text-xl opacity-20">🌻</div>
-                </>
-            );
+            return {
+                bg: "bg-gradient-to-br from-amber-50/50 to-orange-50/30",
+                accent: "from-amber-400 to-orange-500",
+                emoji: "☀️"
+            };
         }
-        // Autumn (Sep, Oct, Nov) - Leaves
-        if (month >= 8 && month <= 10) {
-            return (
-                <>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-28 h-28 bg-orange-200/30 rounded-full blur-3xl" />
-                    <div className="absolute top-3 right-3 text-2xl opacity-30">🍂</div>
-                    <div className="absolute bottom-3 left-3 text-xl opacity-20">🍁</div>
-                </>
-            );
-        }
-        return null;
+        // Sonbahar (Eylül, Ekim, Kasım)
+        return {
+            bg: "bg-gradient-to-br from-orange-50/50 to-amber-50/30",
+            accent: "from-orange-400 to-amber-600",
+            emoji: "🍂"
+        };
     };
 
+    const theme = getSeasonalTheme(currentMonth);
+
     return (
-        <div className="relative bg-white rounded-xl shadow-lg overflow-hidden">
-            {/* Seasonal Background */}
-            <div className="absolute inset-0 pointer-events-none">
-                {getSeasonDecoration(currentMonth)}
+        <div className={cn("relative overflow-hidden rounded-2xl shadow-xl border border-stone-200", theme.bg)}>
+            {/* Seasonal Decoration */}
+            <div className="absolute top-3 right-3 text-4xl opacity-10 pointer-events-none">
+                {theme.emoji}
             </div>
 
             <DayPicker
                 locale={tr}
                 showOutsideDays={showOutsideDays}
                 onMonthChange={setCurrentMonth}
-                className={cn("p-4 relative z-10", className)}
+                className={cn("p-6", className)}
                 classNames={{
                     months: "flex flex-col",
-                    month: "space-y-4",
-                    caption: "flex justify-center items-center relative h-10",
-                    caption_label: "text-lg font-serif font-bold text-primary",
+                    month: "space-y-5",
+                    caption: "flex justify-center items-center relative mb-6",
+                    caption_label: "text-2xl font-serif font-bold bg-gradient-to-r bg-clip-text text-transparent from-primary to-emerald-700",
                     nav: "flex items-center gap-1",
-                    nav_button: "h-8 w-8 bg-stone-100 hover:bg-primary hover:text-white rounded-full flex items-center justify-center transition-all text-stone-600",
-                    nav_button_previous: "absolute left-1",
-                    nav_button_next: "absolute right-1",
-                    table: "w-full border-collapse",
+                    nav_button: cn(
+                        "h-9 w-9 bg-white/80 backdrop-blur-sm hover:bg-primary hover:text-white",
+                        "rounded-full flex items-center justify-center transition-all duration-300",
+                        "shadow-sm hover:shadow-md text-stone-600 border border-stone-200/50"
+                    ),
+                    nav_button_previous: "absolute left-0",
+                    nav_button_next: "absolute right-0",
+                    table: "w-full border-collapse mt-2",
                     head_row: "hidden",
                     head_cell: "hidden",
-                    row: "flex w-full justify-center gap-1 mt-1",
-                    cell: "h-9 w-9 text-center text-sm p-0 relative",
-                    day: "h-9 w-9 p-0 font-normal rounded-full hover:bg-primary/10 hover:text-primary transition-all text-stone-700 inline-flex items-center justify-center cursor-pointer",
-                    day_range_end: "day-range-end",
-                    day_selected: "bg-primary text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white shadow-md",
-                    day_today: "bg-stone-100 text-primary font-bold ring-1 ring-primary/30",
-                    day_outside: "text-stone-300 opacity-50",
-                    day_disabled: "text-stone-300 opacity-50",
+                    row: "flex w-full justify-center gap-1.5 mt-1.5",
+                    cell: cn(
+                        "relative h-11 w-11 text-center text-sm p-0",
+                        "focus-within:relative focus-within:z-20"
+                    ),
+                    day: cn(
+                        "h-11 w-11 p-0 font-medium rounded-xl",
+                        "inline-flex items-center justify-center",
+                        "text-stone-700 hover:bg-white/60 hover:text-primary",
+                        "transition-all duration-200 cursor-pointer",
+                        "hover:scale-105 hover:shadow-sm"
+                    ),
+                    day_selected: cn(
+                        "bg-gradient-to-br", theme.accent,
+                        "text-white font-bold shadow-lg hover:shadow-xl",
+                        "hover:scale-110 ring-2 ring-white/50"
+                    ),
+                    day_today: cn(
+                        "bg-white text-primary font-bold",
+                        "ring-2 ring-primary/30 shadow-sm"
+                    ),
+                    day_outside: "text-stone-300 opacity-40",
+                    day_disabled: "text-stone-200 opacity-30 cursor-not-allowed",
                     day_hidden: "invisible",
                     ...classNames,
                 }}
@@ -104,6 +114,7 @@ function Calendar({
         </div>
     );
 }
+
 Calendar.displayName = "Calendar";
 
 export { Calendar };
