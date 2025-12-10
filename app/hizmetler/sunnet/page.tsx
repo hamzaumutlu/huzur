@@ -10,7 +10,7 @@ export default function SunnetPage() {
                 <div className="max-w-4xl mx-auto text-center space-y-4">
                     <h1 className="text-4xl md:text-6xl font-serif text-stone-900">Sünnet Organizasyonu Erzurum</h1>
                     <p className="text-lg text-stone-600 max-w-2xl mx-auto">
-                        Geleneklerimize yakışır, görkemli ve eğlenceli sünnet düğünleri. Çocuğunuzun ilk mürüvvetini krallara layık kutlayın.
+                        Geleneklerimize yakışır, görkemli ve eğlenceli sünnet düğünleri. Çocuğunuzun ilk mürüvvetini özel kılın.
                     </p>
                 </div>
             </div>
@@ -22,21 +22,21 @@ export default function SunnetPage() {
                 <div className="space-y-6">
                     <h2 className="text-3xl font-serif text-stone-800">Krallara Layık Bir Şölen</h2>
                     <p className="text-stone-600 leading-relaxed">
-                        Erzurum'un örf ve adetlerine uygun, hem modern hem geleneksel çizgilerin harmanlandığı muhteşem bir şölen hazırlıyoruz.
-                        Sünnet tahtı, yeniçeri ekibi, mehter takımı ve çocuk eğlenceleri ile dolu dolu bir program sunuyoruz.
+                        Erzurum'un örf ve adetlerine uygun, şık ve eğlenceli bir şölen hazırlıyoruz.
+                        Mekan süslemelerinden lezzetli ikramlıklara, çocuklar için palyaço gösterilerinden özel masa dekorlarına kadar her detay düşünülmüştür.
                     </p>
                     <ul className="space-y-3">
                         <li className="flex items-center gap-2 text-stone-700">
-                            <span className="w-2 h-2 bg-primary rounded-full" /> Gösterişli Sünnet Tahtı
+                            <span className="w-2 h-2 bg-primary rounded-full" /> Konsept Mekan Süsleme
                         </li>
                         <li className="flex items-center gap-2 text-stone-700">
-                            <span className="w-2 h-2 bg-primary rounded-full" /> Yeniçeri Seremonisi
+                            <span className="w-2 h-2 bg-primary rounded-full" /> Şık Masa Düzeni ve Dekorlar
                         </li>
                         <li className="flex items-center gap-2 text-stone-700">
-                            <span className="w-2 h-2 bg-primary rounded-full" /> Palyaço ve Animasyonlar
+                            <span className="w-2 h-2 bg-primary rounded-full" /> Lezzetli İkramlıklar
                         </li>
                         <li className="flex items-center gap-2 text-stone-700">
-                            <span className="w-2 h-2 bg-primary rounded-full" /> Mekan ve Masa Süsleme
+                            <span className="w-2 h-2 bg-primary rounded-full" /> Palyaço ve Çocuk Animasyonları
                         </li>
                     </ul>
                 </div>

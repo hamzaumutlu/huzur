@@ -27,7 +27,7 @@ export default function MatinePage() {
                     </p>
                     <ul className="space-y-3">
                         <li className="flex items-center gap-2 text-stone-700">
-                            <span className="w-2 h-2 bg-primary rounded-full" /> DJ Bayan & Canlı Müzik
+                            <span className="w-2 h-2 bg-primary rounded-full" /> DJ Bayan
                         </li>
                         <li className="flex items-center gap-2 text-stone-700">
                             <span className="w-2 h-2 bg-primary rounded-full" /> Özel İkramlıklar ve Çay Saati
