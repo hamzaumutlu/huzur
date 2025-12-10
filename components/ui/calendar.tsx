@@ -4,7 +4,6 @@ import * as React from "react";
 import { DayPicker } from "react-day-picker";
 import { tr } from "date-fns/locale";
 import { getMonth } from "date-fns";
-import { ChevronLeft, ChevronRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -102,10 +101,6 @@ function Calendar({
                     day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
                     day_hidden: "invisible",
                     ...classNames,
-                }}
-                components={{
-                    IconLeft: ({ ...props }) => <ChevronLeft className="h-5 w-5" />,
-                    IconRight: ({ ...props }) => <ChevronRight className="h-5 w-5" />,
                 }}
                 {...props}
             />
