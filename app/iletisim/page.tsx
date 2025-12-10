@@ -28,7 +28,10 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-medium text-stone-900">Adres</h4>
-                                    <p className="text-stone-600">Cumhuriyet Caddesi, Huzur Sokağı No:1, Yakutiye / Erzurum</p>
+                                    <p className="text-stone-600">
+                                        Adnan Menderes Mah. 82. Sokak Dış Kapı:15 İşyeri No:5,<br />
+                                        25070 Palandöken / Erzurum
+                                    </p>
                                 </div>
                             </div>
 
@@ -38,7 +41,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-medium text-stone-900">Telefon</h4>
-                                    <p className="text-stone-600">+90 531 371 86 74</p>
+                                    <p className="text-stone-600">0531 371 86 74</p>
                                 </div>
                             </div>
 
@@ -48,7 +51,7 @@ export default function ContactPage() {
                                 </div>
                                 <div>
                                     <h4 className="font-medium text-stone-900">E-Posta</h4>
-                                    <p className="text-stone-600">iletisim@huzursokagi.com</p>
+                                    <p className="text-stone-600">info@huzursokagi.com</p>
                                 </div>
                             </div>
 
@@ -65,17 +68,18 @@ export default function ContactPage() {
                     </div>
                 </div>
 
-                {/* Map Placeholder */}
-                <div className="h-full min-h-[400px] bg-stone-200 rounded-2xl overflow-hidden relative">
+                {/* Google Map Embed */}
+                <div className="h-full min-h-[400px] bg-stone-200 rounded-2xl overflow-hidden relative shadow-md">
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3444.200164894982!2d41.2763264!3d39.9043164!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x406e5ed7a151676d%3A0xe7a5050f24e933e4!2sErzurum%20Cumhuriyet%20Caddesi!5e0!3m2!1str!2str!4v1700000000000!5m2!1str!2str"
+                        src="https://maps.google.com/maps?q=Adnan+Menderes+mah.+82.sokak+dış+kapi+:15+isyeri+no:5,+25070+Palandöken/Erzurum&t=&z=15&ie=UTF8&iwloc=&output=embed"
                         width="100%"
                         height="100%"
                         style={{ border: 0 }}
                         allowFullScreen={true}
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
-                        className="absolute inset-0 w-full h-full grayscale opacity-80 hover:grayscale-0 transition-all duration-500"
+                        title="Huzur Sokağı Organizasyon Konumu"
+                        className="absolute inset-0 w-full h-full grayscale-[20%] hover:grayscale-0 transition-all duration-500"
                     ></iframe>
                 </div>
             </div>

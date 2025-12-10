@@ -28,8 +28,8 @@ export function Header() {
     const navLinks = [
         { name: "Ana Sayfa", href: "/" },
         { name: "Hizmetler", href: "/#services" },
-        { name: "Hakkımızda", href: "/#about" }, // Changed to anchor for now or create generic page
-        { name: "İletişim", href: "/#contact" },
+        { name: "Hakkımızda", href: "/hakkimizda" },
+        { name: "İletişim", href: "/iletisim" },
     ];
 
     return (
