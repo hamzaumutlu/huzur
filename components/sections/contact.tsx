@@ -4,6 +4,12 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Calendar as CalendarIcon, MapPin, Phone, Mail, Instagram } from "lucide-react";
+import { Calendar } from "@/components/ui/calendar";
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from "@/components/ui/popover";
 import { format } from "date-fns";
 import { tr } from "date-fns/locale";
 import { cn } from "@/lib/utils";
@@ -11,6 +17,7 @@ import { cn } from "@/lib/utils";
 export function Contact() {
     const [formStatus, setFormStatus] = useState<"idle" | "submitting" | "success">("idle");
     const [date, setDate] = useState<Date>();
+    const [isCalendarOpen, setIsCalendarOpen] = useState(false);
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -135,14 +142,33 @@ export function Contact() {
                                 </div>
                             </div>
 
-                            <div className="space-y-2">
+                            <div className="space-y-2 flex flex-col">
                                 <label className="text-sm font-medium text-stone-200">Tarih</label>
-                                <input
-                                    name="date_input"
-                                    type="date"
-                                    className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all appearance-none"
-                                    onChange={(e) => setDate(e.target.valueAsDate || undefined)}
-                                />
+                                <Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+                                    <PopoverTrigger asChild>
+                                        <Button
+                                            variant={"outline"}
+                                            className={cn(
+                                                "w-full justify-start text-left font-normal bg-stone-50 border-none text-stone-900 hover:bg-stone-100 py-6 px-4 h-auto text-base",
+                                                !date && "text-stone-500"
+                                            )}
+                                        >
+                                            <CalendarIcon className="mr-2 h-5 w-5 opacity-70" />
+                                            {date ? format(date, "d MMMM yyyy", { locale: tr }) : <span>Tarih Seçiniz</span>}
+                                        </Button>
+                                    </PopoverTrigger>
+                                    <PopoverContent className="w-auto p-0 border-none bg-transparent shadow-none" align="start">
+                                        <Calendar
+                                            mode="single"
+                                            selected={date}
+                                            onSelect={(d) => {
+                                                setDate(d);
+                                                setIsCalendarOpen(false);
+                                            }}
+                                            initialFocus
+                                        />
+                                    </PopoverContent>
+                                </Popover>
                             </div>
 
                             <div className="space-y-2">
@@ -150,7 +176,7 @@ export function Contact() {
                                 <textarea name="notes" rows={4} className="w-full bg-stone-50 border-none rounded-lg px-4 py-3 text-stone-900 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all resize-none" placeholder="Aklınızdaki detaylar..."></textarea>
                             </div>
 
-                            <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-6 text-lg">
+                            <Button type="submit" size="lg" className="w-full bg-primary hover:bg-primary/90 text-white font-medium py-6 text-lg shadow-lg shadow-primary/20">
                                 {formStatus === "submitting" ? "Gönderiliyor..." : "Teklif İste"}
                             </Button>
                         </form>

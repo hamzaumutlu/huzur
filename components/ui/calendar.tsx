@@ -21,34 +21,34 @@ function Calendar({
     const getSeasonalTheme = (date: Date) => {
         const month = getMonth(date);
 
-        // Kış (Aralık, Ocak, Şubat)
+        // Kış Theme
         if (month === 11 || month === 0 || month === 1) {
             return {
-                bg: "bg-gradient-to-br from-blue-50/80 to-cyan-50/50",
-                accent: "from-blue-400 to-cyan-500",
+                bg: "bg-gradient-to-br from-indigo-50 to-blue-50",
+                accent: "from-indigo-400 to-blue-500",
                 emoji: "❄️"
             };
         }
-        // İlkbahar (Mart, Nisan, Mayıs)
+        // İlkbahar Theme
         if (month >= 2 && month <= 4) {
             return {
-                bg: "bg-gradient-to-br from-pink-50/80 to-rose-50/50",
+                bg: "bg-gradient-to-br from-pink-50 to-rose-50",
                 accent: "from-pink-400 to-rose-500",
                 emoji: "🌸"
             };
         }
-        // Yaz (Haziran, Temmuz, Ağustos)
+        // Yaz Theme
         if (month >= 5 && month <= 7) {
             return {
-                bg: "bg-gradient-to-br from-amber-50/80 to-orange-50/50",
+                bg: "bg-gradient-to-br from-amber-50 to-orange-50",
                 accent: "from-amber-400 to-orange-500",
                 emoji: "☀️"
             };
         }
-        // Sonbahar (Eylül, Ekim, Kasım)
+        // Sonbahar Theme
         return {
-            bg: "bg-gradient-to-br from-orange-50/80 to-amber-50/50",
-            accent: "from-orange-400 to-amber-600",
+            bg: "bg-gradient-to-br from-orange-50 to-stone-100",
+            accent: "from-orange-400 to-stone-500",
             emoji: "🍂"
         };
     };
@@ -56,23 +56,9 @@ function Calendar({
     const theme = getSeasonalTheme(currentMonth);
 
     return (
-        <div className={cn("relative overflow-hidden rounded-3xl shadow-2xl border border-white/20 backdrop-blur-xl", theme.bg)}>
-            {/* CSS Injection to Force Hide Headers */}
-            <style jsx global>{`
-                .rdp-head, .rdp-head_row, .rdp-head_cell, thead {
-                    display: none !important;
-                    visibility: hidden !important;
-                    height: 0 !important;
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                }
-                .rdp-caption {
-                    margin-bottom: 1rem !important;
-                }
-            `}</style>
-
-            {/* Seasonal Decoration */}
-            <div className="absolute top-4 right-4 text-5xl opacity-20 pointer-events-none animate-pulse">
+        <div className={cn("relative overflow-hidden rounded-[2rem] shadow-xl border border-white/50", theme.bg)}>
+            {/* Decorative Emoji Background */}
+            <div className="absolute -top-4 -right-4 text-8xl opacity-10 pointer-events-none select-none">
                 {theme.emoji}
             </div>
 
@@ -82,51 +68,50 @@ function Calendar({
                 onMonthChange={setCurrentMonth}
                 className={cn("p-6", className)}
                 classNames={{
-                    months: "flex flex-col",
+                    months: "flex flex-col sm:flex-row space-y-4 sm:space-x-4 sm:space-y-0",
                     month: "space-y-4",
-                    caption: "flex justify-center items-center relative mb-4",
-                    caption_label: "text-2xl font-serif font-bold text-stone-800 drop-shadow-sm",
-                    nav: "flex items-center gap-2",
+                    caption: "flex justify-center pt-1 relative items-center mb-4",
+                    caption_label: "text-xl font-serif font-bold text-stone-800",
+                    nav: "space-x-1 flex items-center",
                     nav_button: cn(
-                        "h-8 w-8 bg-white/50 hover:bg-white hover:text-primary hover:scale-110",
-                        "rounded-full flex items-center justify-center transition-all duration-300",
-                        "shadow-sm border border-white/40 text-stone-600 backdrop-blur-sm"
+                        "h-8 w-8 bg-white/80 hover:bg-white rounded-full flex items-center justify-center transition-all shadow-sm text-stone-600 hover:text-primary hover:scale-110",
                     ),
-                    nav_button_previous: "absolute left-0",
-                    nav_button_next: "absolute right-0",
-                    table: "w-full border-collapse",
-                    row: "flex w-full justify-center gap-2 mt-2",
+                    nav_button_previous: "absolute left-1",
+                    nav_button_next: "absolute right-1",
+                    table: "w-full border-collapse space-y-1",
+                    head_row: "flex mb-2",
+                    head_cell: "text-stone-500 rounded-md w-10 font-medium text-[0.8rem]",
+                    row: "flex w-full mt-2",
                     cell: cn(
-                        "relative h-10 w-10 text-center text-sm p-0",
-                        "focus-within:relative focus-within:z-20"
+                        "relative p-0 text-center text-sm focus-within:relative focus-within:z-20",
+                        props.mode === "range"
+                            ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has(>.day-range-start)]:rounded-l-md last:[&:has(>.day-range-end)]:rounded-r-md"
+                            : "[&:has([aria-selected])]:rounded-full"
                     ),
                     day: cn(
-                        "h-10 w-10 p-0 font-medium rounded-full",
-                        "inline-flex items-center justify-center",
-                        "text-stone-700 hover:bg-white hover:text-primary",
-                        "transition-all duration-200 cursor-pointer",
-                        "hover:shadow-md border border-transparent hover:border-white/50"
+                        "h-10 w-10 p-0 font-medium",
+                        "rounded-full hover:bg-white hover:text-primary transition-all hover:shadow-md cursor-pointer flex items-center justify-center"
                     ),
                     day_selected: cn(
                         "bg-gradient-to-br", theme.accent,
-                        "text-white font-bold shadow-lg hover:shadow-xl",
-                        "scale-110 hover:scale-110 ring-2 ring-white border-none"
+                        "text-white hover:bg-primary hover:text-white focus:bg-primary focus:text-white shadow-lg scale-105"
                     ),
-                    day_today: cn(
-                        "bg-white/60 text-stone-900 font-bold",
-                        "ring-1 ring-stone-900/10"
-                    ),
-                    day_outside: "text-stone-400 opacity-40",
-                    day_disabled: "text-stone-300 opacity-20 cursor-not-allowed",
+                    day_today: "bg-white/60 text-stone-900 font-bold ring-1 ring-stone-900/10",
+                    day_outside: "text-stone-400 opacity-50",
+                    day_disabled: "text-stone-300 opacity-50",
+                    day_range_middle: "aria-selected:bg-accent aria-selected:text-accent-foreground",
                     day_hidden: "invisible",
                     ...classNames,
+                }}
+                components={{
+                    IconLeft: ({ ...props }) => <ChevronLeft className="h-5 w-5" />,
+                    IconRight: ({ ...props }) => <ChevronRight className="h-5 w-5" />,
                 }}
                 {...props}
             />
         </div>
     );
 }
-
 Calendar.displayName = "Calendar";
 
 export { Calendar };
